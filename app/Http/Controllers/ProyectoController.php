@@ -12,7 +12,9 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyectos = Proyecto::latest()->get();
+
+        return view('proyectos.index', compact('proyectos'));
     }
 
     /**
@@ -20,7 +22,7 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        return view('proyectos.create');
     }
 
     /**
@@ -28,7 +30,20 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'url' => 'nullable|url|max:255',
+            'imagen' => 'nullable|string|max:255',
+            'dificultad' => 'required|in:baja,media,alta',
+            'slug' => 'required|string|max:255|unique:proyectos,slug',
+        ]);
+
+        $proyecto = Proyecto::create($datos);
+
+        return redirect()
+            ->route('proyectos.show', $proyecto)
+            ->with('status', 'Proyecto creado correctamente.');
     }
 
     /**
@@ -36,7 +51,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        //
+        return view('proyectos.show', compact('proyecto'));
     }
 
     /**
@@ -44,7 +59,7 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-        //
+        return view('proyectos.edit', compact('proyecto'));
     }
 
     /**
@@ -52,7 +67,20 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, Proyecto $proyecto)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'url' => 'nullable|url|max:255',
+            'imagen' => 'nullable|string|max:255',
+            'dificultad' => 'required|in:baja,media,alta',
+            'slug' => 'required|string|max:255|unique:proyectos,slug,'.$proyecto->id,
+        ]);
+
+        $proyecto->update($datos);
+
+        return redirect()
+            ->route('proyectos.show', $proyecto)
+            ->with('status', 'Proyecto actualizado correctamente.');
     }
 
     /**
@@ -60,6 +88,10 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        $proyecto->delete();
+
+        return redirect()
+            ->route('proyectos.index')
+            ->with('status', 'Proyecto eliminado correctamente.');
     }
 }

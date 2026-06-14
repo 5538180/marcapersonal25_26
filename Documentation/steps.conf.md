@@ -147,6 +147,17 @@ docker compose exec workspace bash -lc "cd /var/www/marcapersonalFP25_26 && php 
 
 
 
+## Reglas factorys
 
+ 1. ¿Estoy creando un modelo normal?
+   Sí -> hago su factory
+
+2. ¿Ese modelo tiene una FK en su tabla?
+   Sí -> en la factory creo el padre y guardo su id
+   No -> solo pongo sus campos
+
+3. ¿La relación es N:M con pivot?
+   Sí -> no la meto en la factory
+   La hago en el seeder
 
 

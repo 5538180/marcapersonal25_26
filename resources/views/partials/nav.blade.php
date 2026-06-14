@@ -6,9 +6,9 @@
             <a href="#">Catálogo</a>
             <ul>
                 <li><a href="#">Familias profesionales</a></li>
-                <li><a href="#">Ciclos formativos</a></li>
-                <li><a href="#">Proyectos</a></li>
-                <li><a href="#">Estudiantes</a></li>
+                <li><a href="{{ route('ciclos.index') }}">Ciclos formativos</a></li>
+                <li><a href="{{ route('proyectos.index') }}">Proyectos</a></li>
+                <li><a href="{{ route('estudiantes.index') }}">Estudiantes</a></li>
                 <li><a href="#">Docentes</a></li>
             </ul>
         </li>
@@ -19,6 +19,7 @@
             <li><a href="{{ route('register') }}">Registrarse</a></li>
         @else
             <li><a href="{{ route('dashboard') }}">Panel</a></li>
+            <li><a href="{{ route('proyectos.create') }}">Nuevo proyecto</a></li>
             <li>
                 <a href="#"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

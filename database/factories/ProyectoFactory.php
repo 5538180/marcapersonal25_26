@@ -14,17 +14,14 @@ class ProyectoFactory extends Factory
     public function definition(): array
     {
         $nombre = fake()->unique()->sentence(3);
-        $descripcion = fake()->paragraph();
-        $url = fake()->url();
-        $dificultad = fake()->randomElement(['baja', 'media', 'alta']);
         $slug = Str::slug($nombre);
 
         return [
             'nombre' => $nombre,
-            'descripcion' => $descripcion,
-            'url' => $url,
+            'descripcion' => fake()->paragraph(),
+            'url' => fake()->url(),
             'imagen' => null,
-            'dificultad' => $dificultad,
+            'dificultad' => fake()->randomElement(['baja', 'media', 'alta']),
             'slug' => $slug,
         ];
     }

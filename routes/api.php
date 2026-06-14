@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CicloFormativoController;
+use App\Http\Controllers\Api\FamiliaProfesionalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +24,7 @@ Route::get('/user', function (Request $request) {
 |
 */
 Route::middleware('auth:sanctum')->group(function () {
-    // TODO: definir aquí los apiResource del dominio en próximos commits.
+
+Route::apiResource('familias', FamiliaProfesionalController::class);
+ Route::apiResource('ciclos', CicloFormativoController::class);
 });

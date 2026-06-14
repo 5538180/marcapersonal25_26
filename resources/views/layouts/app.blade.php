@@ -28,9 +28,10 @@
                     </div>
                 </section>
             @endif
-
             {{-- Contenido principal de cada página --}}
             <section id="main">
+              
+
                 <div class="container">
                     <div class="row">
                         <div id="content" class="@hasSection('sidebar') col-8 col-12-medium imp-medium @else col-12 @endif">

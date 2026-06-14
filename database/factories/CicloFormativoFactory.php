@@ -17,14 +17,13 @@ class CicloFormativoFactory extends Factory
         $familiaProfesional = FamiliaProfesional::factory()->create();
         $codigo = strtoupper(fake()->unique()->word());
         $nombre = fake()->unique()->sentence(3);
-        $grado = fake()->randomElement(['medio', 'superior']);
         $slug = Str::slug($codigo.' '.$nombre);
 
         return [
             'familia_profesional_id' => $familiaProfesional->id,
             'codigo' => $codigo,
             'nombre' => $nombre,
-            'grado' => $grado,
+            'grado' => fake()->randomElement(['medio', 'superior']),
             'slug' => $slug,
         ];
     }

@@ -51,9 +51,9 @@
                     </header>
                     <ul class="divided">
                         <li><a href="#">Familias profesionales</a></li>
-                        <li><a href="#">Ciclos formativos</a></li>
-                        <li><a href="#">Proyectos</a></li>
-                        <li><a href="#">Estudiantes</a></li>
+                        <li><a href="{{ route('ciclos.index') }}">Ciclos formativos</a></li>
+                        <li><a href="{{ route('proyectos.index') }}">Proyectos</a></li>
+                        <li><a href="{{ route('estudiantes.index') }}">Estudiantesxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</a></li>
                         <li><a href="#">Docentes</a></li>
                     </ul>
                 </section>

@@ -9,6 +9,7 @@ class DocenteSeeder extends Seeder
 {
     public function run(): void
     {
+        // Creamos los docentes base. La relacion con proyectos va despues en ProyectoSeeder.
         if (Docente::query()->doesntExist()) {
             Docente::factory()->count(5)->create();
         }

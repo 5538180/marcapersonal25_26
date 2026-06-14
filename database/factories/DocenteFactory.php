@@ -14,13 +14,10 @@ class DocenteFactory extends Factory
 {
     public function definition(): array
     {
+        $user = User::factory()->create();
         $nombre = fake()->firstName();
         $apellidos = fake()->lastName().' '.fake()->lastName();
         $email = fake()->unique()->safeEmail();
-        $user = User::factory()->create([
-            'name' => $nombre.' '.$apellidos,
-            'email' => $email,
-        ]);
         $slug = Str::slug($nombre.' '.$apellidos.' '.$email);
 
         return [

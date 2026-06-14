@@ -12,7 +12,8 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantes = Estudiante::all();
+        return view('estudiantes.index', compact('estudiantes'));
     }
 
     /**
@@ -20,7 +21,9 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        //
+        
+        
+        return view('estudiantes.create');
     }
 
     /**
@@ -28,7 +31,19 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|email|unique:estudiantes,email',
+            'telefono' => 'nullable|string|max:20',
+            'ciclo_formativo_id' => 'required|exists:ciclo_formativos,id',
+        ]);
+
+        $estudiante = Estudiante::create($datos);
+
+        return redirect()
+            ->route('estudiantes.show', $estudiante)
+            ->with('status', 'Estudiante creado correctamente.');
     }
 
     /**
@@ -36,7 +51,8 @@ class EstudianteController extends Controller
      */
     public function show(Estudiante $estudiante)
     {
-        //
+          $estudiante = auth()->user()->estudiante;
+        return view('estudiantes.show', compact('estudiante'));
     }
 
     /**
@@ -44,7 +60,8 @@ class EstudianteController extends Controller
      */
     public function edit(Estudiante $estudiante)
     {
-        //
+        /*  $estudiante = auth()->user()->estudiante; */
+        return view('estudiantes.edit', compact('estudiante'));
     }
 
     /**
@@ -52,7 +69,19 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, Estudiante $estudiante)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|email|unique:estudiantes,email,'.$estudiante->id,
+            'telefono' => 'nullable|string|max:20',
+            'ciclo_formativo_id' => 'required|exists:ciclo_formativos,id',
+        ]);
+
+        $estudiante->update($datos);
+
+        return redirect()
+            ->route('estudiantes.show', $estudiante)
+            ->with('status', 'Estudiante actualizado correctamente.');
     }
 
     /**
@@ -60,6 +89,16 @@ class EstudianteController extends Controller
      */
     public function destroy(Estudiante $estudiante)
     {
-        //
+        try {
+            $estudiante->delete();
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('estudiantes.index')
+                ->with('error', 'No se puede eliminar el estudiante porque tiene proyectos asociados.');
+        }
+        $estudiante->delete();
+        return redirect()
+            ->route('estudiantes.index')
+            ->with('status', 'Estudiante eliminado correctamente.');
     }
 }
