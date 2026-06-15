@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\FamiliaProfesional;
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
-class FamiliaProfesionalController extends Controller
+class EstudianteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $familiaPRofesional = FamiliaProfesional::withCount('ciclos_formativos')->get();
-        return response()->json($familiaPRofesional,200);
-
-    
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FamiliaProfesional $familiaProfesional)
+    public function show(Estudiante $estudiante)
     {
         //
     }
@@ -38,7 +35,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FamiliaProfesional $familiaProfesional)
+    public function update(Request $request, Estudiante $estudiante)
     {
         //
     }
@@ -46,7 +43,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FamiliaProfesional $familiaProfesional)
+    public function destroy(Estudiante $estudiante)
     {
         //
     }
