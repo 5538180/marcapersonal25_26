@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable ;
     public function estudiante(): HasOne // 11
     {
         return $this->hasOne(Estudiante::class, 'user_id');
