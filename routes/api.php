@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\EstudianteController;
+use App\Http\Controllers\Api\CicloFamiliaController;
+use App\Http\Controllers\Api\CicloFormativoController;
 use App\Http\Controllers\Api\FamiliaProfesionalController;
 use App\Http\Controllers\Api\ProyectoController;
 
@@ -17,7 +19,18 @@ Route::middleware(['auth:sanctum', 'proyecto.asignado'])
     ->missing(fn () => response()->json([
         'message' => 'Proyecto no encontrado.',
     ], 404));
+
+
+
 Route::apiResource('estudiantes', EstudianteController::class);
-Route::apiResource('familiaProfesional', FamiliaProfesionalController::class);
 
+Route::apiResource('familia-profesional', FamiliaProfesionalController::class);
 
+Route::apiResource('ciclos-formativos', CicloFormativoController::class)
+    ->parameters(['ciclos-formativos' => 'cicloFormativo']);
+
+Route::apiResource('familia-profesional.ciclos-formativos', CicloFamiliaController::class)
+    ->parameters([
+        'familia-profesional' => 'familiaProfesional',
+        'ciclos-formativos' => 'cicloFormativo',
+    ]);

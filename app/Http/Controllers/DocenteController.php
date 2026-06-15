@@ -12,7 +12,9 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        $docentes = Docente::all();
+
+        return view('docentes.index', compact('docentes'));
     }
 
     /**
@@ -20,7 +22,7 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        //
+        return view('docentes.create');
     }
 
     /**
@@ -28,7 +30,19 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'user_id' => 'nullable|exists:users,id|unique:docentes,user_id',
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|email|unique:docentes,email',
+            'slug' => 'required|string|max:255|unique:docentes,slug',
+        ]);
+
+        $docente = Docente::create($datos);
+
+        return redirect()
+            ->route('docentes.show', $docente)
+            ->with('status', 'Docente creado correctamente.');
     }
 
     /**
@@ -36,7 +50,7 @@ class DocenteController extends Controller
      */
     public function show(Docente $docente)
     {
-        //
+        return view('docentes.show', compact('docente'));
     }
 
     /**
@@ -44,7 +58,7 @@ class DocenteController extends Controller
      */
     public function edit(Docente $docente)
     {
-        //
+        return view('docentes.edit', compact('docente'));
     }
 
     /**
@@ -52,7 +66,19 @@ class DocenteController extends Controller
      */
     public function update(Request $request, Docente $docente)
     {
-        //
+        $datos = $request->validate([
+            'user_id' => 'nullable|exists:users,id|unique:docentes,user_id,' . $docente->id,
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|email|unique:docentes,email,' . $docente->id,
+            'slug' => 'required|string|max:255|unique:docentes,slug,' . $docente->id,
+        ]);
+
+        $docente->update($datos);
+
+        return redirect()
+            ->route('docentes.show', $docente)
+            ->with('status', 'Docente actualizado correctamente.');
     }
 
     /**
@@ -60,6 +86,16 @@ class DocenteController extends Controller
      */
     public function destroy(Docente $docente)
     {
-        //
+        try {
+            $docente->delete();
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('docentes.index')
+                ->with('error', 'No se puede eliminar el docente porque tiene datos asociados.');
+        }
+
+        return redirect()
+            ->route('docentes.index')
+            ->with('status', 'Docente eliminado correctamente.');
     }
 }

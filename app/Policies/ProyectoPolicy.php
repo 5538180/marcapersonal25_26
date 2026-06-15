@@ -41,10 +41,6 @@ class ProyectoPolicy
             return true;
         }
 
-        if (!$user->docente) {
-            return false;
-        }
-
         return $this->tieneProyectoAsignado($user, $proyecto);
     }
 

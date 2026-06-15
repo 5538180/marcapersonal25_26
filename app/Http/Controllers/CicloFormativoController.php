@@ -26,9 +26,7 @@ class CicloFormativoController extends Controller
      */
     public function create()
     {
-        $familias = FamiliaProfesional::all();
-
-        return view('ciclos.create', compact('familias'));
+        return view('ciclos.create');
     }
 
     /**

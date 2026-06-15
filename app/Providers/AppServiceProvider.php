@@ -5,9 +5,10 @@ namespace App\Providers;
 use App\Models\Proyecto;
 use App\Models\User;
 use App\Policies\ProyectoPolicy;
-use Gate;
+use App\Services\CiclosPorFamiliaService;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(CiclosPorFamiliaService::class, function () {
+            return new CiclosPorFamiliaService();
+        });
     }
 
     /**
@@ -39,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
 
                 return null;
             }); */
+        });
+
+        Gate::define('gestionar-estudiantes', function (User $user) {
+            return $user->estudiante !== null;
         });
     }
 }
