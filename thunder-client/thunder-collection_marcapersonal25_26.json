@@ -1,0 +1,236 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "marcapersonal25_26",
+    "collectionId": "col_marcapersonal25_26_local",
+    "dateExported": "2026-06-16T16:10:00.000Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "fld_api_public",
+            "name": "API publica",
+            "containerId": "",
+            "created": "2026-06-16T16:10:00.000Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "fld_web_auth",
+            "name": "Web auth",
+            "containerId": "",
+            "created": "2026-06-16T16:10:00.000Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "req_api_estudiantes_index",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_api_public",
+            "name": "GET api estudiantes",
+            "url": "{{base_url}}/api/estudiantes",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_api_proyectos_index",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_api_public",
+            "name": "GET api proyectos",
+            "url": "{{base_url}}/api/proyectos",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_api_familias_index",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_api_public",
+            "name": "GET api familia-profesional",
+            "url": "{{base_url}}/api/familia-profesional",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_api_ciclos_index",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_api_public",
+            "name": "GET api ciclos-formativos",
+            "url": "{{base_url}}/api/ciclos-formativos",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_web_login_get",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_web_auth",
+            "name": "GET login view",
+            "url": "{{base_url}}/login",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_web_register_get",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_web_auth",
+            "name": "GET register view",
+            "url": "{{base_url}}/register",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_web_csrf_cookie",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_web_auth",
+            "name": "GET sanctum csrf-cookie",
+            "url": "{{base_url}}/sanctum/csrf-cookie",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "req_web_login_post",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_web_auth",
+            "name": "POST login",
+            "url": "{{base_url}}/login",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                },
+                {
+                    "name": "X-XSRF-TOKEN",
+                    "value": "{{xsrf_token}}"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "{{email}}"
+                    },
+                    {
+                        "name": "password",
+                        "value": "{{password}}"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "req_api_user",
+            "colId": "col_marcapersonal25_26_local",
+            "containerId": "fld_web_auth",
+            "name": "GET api user",
+            "url": "{{base_url}}/api/user",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2026-06-16T16:10:00.000Z",
+            "modified": "2026-06-16T16:10:00.000Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-Requested-With",
+                    "value": "XMLHttpRequest"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "headers": [],
+    "auth": {
+        "type": "none"
+    }
+}

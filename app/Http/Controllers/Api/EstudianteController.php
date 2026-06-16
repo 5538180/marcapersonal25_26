@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EstudianteResource;
+use App\Models\Ciclo;
+use App\Models\CicloFormativo;
 use App\Models\Estudiante;
+use App\Models\FamiliaProfesional;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -14,10 +17,20 @@ class EstudianteController extends Controller
      */
     public function index(Request $request)
     {
-        return EstudianteResource::collection(
-            Estudiante::orderBy($request->sort ?? 'id', $request->order ?? 'asc')
-                ->paginate($request->per_page)
-        );
+
+      /*   $codigo = 'ADG';
+ */
+
+
+
+
+
+
+
+            return EstudianteResource::collection(
+                Estudiante::orderBy($request->sort ?? 'id', $request->order ?? 'asc')
+                    ->paginate($request->per_page)
+            );
     }
 
     /**
@@ -25,22 +38,42 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('gestionar-estudiantes');
 
-        $user = $request->user();
+        $estudiante = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'user_id' => 'nullable|exists:users,id',
+            'apellidos' => 'required|string',
+            'dni' => 'required|url|max:255',
+            'email' => 'required|string|max:255',
+            'telefono' => 'required|in:baja,media,alta',
+            'slug' => 'required|string|max:255|unique:proyectos,slug',
+        ]/* ,400 */);
 
-        $estudianteData = [
-            'user_id' => $request->input('user_id'),
-            'dni' => $request->input('dni'),
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-            'email' => $request->input('email'),
-            'telefono' => $request->input('telefono'),
-            'imagen' => $request->input('imagen'),
-            'slug' => $request->input('slug'),
-        ];
 
-        $estudiante = Estudiante::create($estudianteData);
+        /*           $table->foreignId('user_id')->nullable()->unique()->constrained('users')->cascadeOnDelete();
+                    $table->string('dni')->unique();
+                    $table->string('nombre');
+                    $table->string('apellidos');
+                    $table->string('email')->unique();
+                    $table->string('telefono')->nullable();
+                    $table->string('imagen')->nullable();
+                    $table->string('slug')->unique(); */
+
+        /*  $this->authorize('gestionar-estudiantes'); */
+        /*  $user = $request->user(); */
+
+        /*         $estudianteData = [
+                    'user_id' => $request->input('user_id'),
+                    'dni' => $request->input('dni'),
+                    'nombre' => $request->input('nombre'),
+                    'apellidos' => $request->input('apellidos'),
+                    'email' => $request->input('email'),
+                    'telefono' => $request->input('telefono'),
+                    'imagen' => $request->input('imagen'),
+                    'slug' => $request->input('slug'),
+                ]; */
+
+        $estudiante = Estudiante::create($estudiante);
 
         return new EstudianteResource($estudiante);
     }

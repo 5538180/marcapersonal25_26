@@ -40,7 +40,7 @@ class EstudiantePolicy
     {
 
         return $user->id == $estudiante->id
-        ? Response::allow('Eres un estudiante ')
+        ? Response::allow('Eres un estudiante')
         : Response::deny('El usuario no es estudiante');
     }
 
