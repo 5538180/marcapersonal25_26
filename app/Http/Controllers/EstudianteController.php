@@ -12,8 +12,18 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        $estudiantes = Estudiante::all();
-        return view('estudiantes.index', compact('estudiantes'));
+        /* $estudiantes = Estudiante::all();
+        return view('estudiantes.index', compact('estudiantes')); */
+
+
+
+         $user = auth()->user();
+         $estudiante = auth()->user()->estudiante();
+       $respuesta = $this->authorize('update',[$user,$estudiante]);
+
+       return $respuesta;
+
+
     }
 
     /**
@@ -21,8 +31,8 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        
-        
+
+
         return view('estudiantes.create');
     }
 

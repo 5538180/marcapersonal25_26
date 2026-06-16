@@ -5,8 +5,10 @@
 use App\Http\Controllers\CicloFormativoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\FamiliaProfesionalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\QueryPruebaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,7 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/docentes/{docente}', [DocenteController::class, 'destroy'])->name('docentes.destroy');
 });
 
-
+Route::resources([
+    /* 'pruebasDocentes' => DocenteController::class, */
+    'qppruebas' => QueryPruebaController::class,
+]);
 
 // Docentes publicas
 Route::get('/docentes', [DocenteController::class, 'index'])->name('docentes.index');

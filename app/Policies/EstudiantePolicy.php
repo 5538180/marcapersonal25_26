@@ -13,6 +13,7 @@ class EstudiantePolicy
      */
     public function viewAny(User $user): bool
     {
+
         return false;
     }
 
@@ -35,9 +36,12 @@ class EstudiantePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Estudiante $estudiante): bool
+    public function update(User $user, Estudiante $estudiante): Response
     {
-        return false;
+
+        return $user->id == $estudiante->id
+        ? Response::allow('Eres un estudiante ')
+        : Response::deny('El usuario no es estudiante');
     }
 
     /**

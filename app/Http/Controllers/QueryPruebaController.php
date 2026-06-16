@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FamiliaProfesional;
 use Illuminate\Http\Request;
 
-class FamiliaProfesionalController extends Controller
+class QueryPruebaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +12,6 @@ class FamiliaProfesionalController extends Controller
     public function index()
     {
         
-        return response()->json(FamiliaProfesional::all());
     }
 
     /**
@@ -35,7 +33,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FamiliaProfesional $familia_profesional)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +41,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FamiliaProfesional $familia_profesional)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +49,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FamiliaProfesional $familia_profesional)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +57,7 @@ class FamiliaProfesionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FamiliaProfesional $familia_profesional)
+    public function destroy(string $id)
     {
         //
     }

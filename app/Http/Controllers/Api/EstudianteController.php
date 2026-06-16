@@ -58,6 +58,7 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, Estudiante $estudiante)
     {
+
         $this->authorize('gestionar-estudiantes');
 
         $user = $request->user();

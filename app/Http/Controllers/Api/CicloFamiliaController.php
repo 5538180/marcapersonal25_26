@@ -25,6 +25,7 @@ class CicloFamiliaController extends Controller
     {
         $familiaProfesional->total_ciclos = $this->ciclosPorFamiliaService->contarCiclos($familiaProfesional);
 
+        
         return CicloFormativoResource::collection(
             $familiaProfesional->ciclosFormativos()
                 ->orderBy($request->sort ?? 'id', $request->order ?? 'asc')
