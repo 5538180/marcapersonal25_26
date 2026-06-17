@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             EstudianteSeeder::class,
             DocenteSeeder::class,
             ProyectoSeeder::class,
+            QueryPruebaSeeder::class,
         ]);
     }
 }
